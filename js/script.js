@@ -16,6 +16,7 @@ const platformOptions = [
   "Nintendo Switch 2",
   "Steam Deck",
   "Mobile",
+  "Wii",
 ];
 const genreOptions = ["Action", "Adventure", "RPG", "Strategy", "Simulation"];
 
