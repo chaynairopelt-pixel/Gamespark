@@ -1,0 +1,6 @@
+/data/*.sqlite
+/data/*.sqlite-*
+/images/covers/*
+!/images/covers/.gitkeep
+/.env
+/data/local-config.php
