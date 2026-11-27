@@ -3,14 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Mijn games</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>GameSpark | Mijn games</title>
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <main>
       <?php include __DIR__ . "/header.php"; ?>
 
       <p id="message" role="alert" hidden></p>
+
+      <section class="library-heading">
+        <div>
+          <p class="eyebrow">JOUW GAMEBIBLIOTHEEK</p>
+          <h2>Jouw collectie</h2>
+        </div>
+        <p id="game-count" class="game-count"></p>
+      </section>
 
       <section class="filters" aria-label="Games filteren en sorteren">
         <label>Platform
@@ -41,22 +49,8 @@
         </label>
       </section>
 
-      <section class="card">
-        <table>
-          <thead>
-            <tr>
-              <th>Game</th>
-              <th>Platform</th>
-              <th>Genre</th>
-              <th>Status</th>
-              <th>Jaar</th>
-              <th>Rating</th>
-              <th>Notities</th>
-              <th>Acties</th>
-            </tr>
-          </thead>
-          <tbody id="games"></tbody>
-        </table>
+      <section class="library">
+        <div id="games" class="game-grid"></div>
         <p id="empty-state">Je bibliotheek is leeg. Voeg je eerste game toe.</p>
       </section>
     </main>
@@ -159,6 +153,6 @@
       </section>
     </div>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>

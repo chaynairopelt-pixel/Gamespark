@@ -69,22 +69,31 @@ function showGames() {
     ? a.title.localeCompare(b.title)
     : Number(a[sortBy]) - Number(b[sortBy]));
 
+  document.getElementById("game-count").textContent =
+    `${visibleGames.length} van ${games.length} games`;
   gameRows.innerHTML = visibleGames.map((game) => {
     const cover = escapeHtml(game.image_data || "assets/fallback.svg");
-    return `<tr>
-      <td><img class="cover" src="${cover}" alt=""> ${escapeHtml(game.title)}</td>
-      <td>${escapeHtml(game.platform)}</td>
-      <td>${escapeHtml(game.genre)}</td>
-      <td>${escapeHtml(statusName(game.status))}</td>
-      <td>${escapeHtml(game.release_year)}</td>
-      <td>${escapeHtml(game.rating)} / 5</td>
-      <td>${escapeHtml(game.notes || "—")}</td>
-      <td>
-        <button data-details="${game.id}" type="button">Details</button>
-        <button data-edit="${game.id}" type="button">Bewerk</button>
-        <button data-delete="${game.id}" type="button">Verwijder</button>
-      </td>
-    </tr>`;
+    return `<article class="game-card">
+      <button class="game-art" data-details="${game.id}" type="button" aria-label="Bekijk ${escapeHtml(game.title)}">
+        <img src="${cover}" alt="">
+        <span class="art-overlay">Bekijk game <span aria-hidden="true">↗</span></span>
+      </button>
+      <div class="game-info">
+        <div class="game-title-row">
+          <h3>${escapeHtml(game.title)}</h3>
+          <span class="rating">★ ${escapeHtml(game.rating)}<small>/5</small></span>
+        </div>
+        <p class="game-meta">${escapeHtml(game.platform)} <span>·</span> ${escapeHtml(game.genre)} <span>·</span> ${escapeHtml(game.release_year)}</p>
+        <div class="game-footer">
+          <span class="status status-${escapeHtml(game.status.toLowerCase().replace(/\s+/g, "-"))}">${escapeHtml(statusName(game.status))}</span>
+          <div class="game-actions">
+            <button data-edit="${game.id}" type="button" aria-label="Bewerk ${escapeHtml(game.title)}">Bewerk</button>
+            <button data-delete="${game.id}" type="button" aria-label="Verwijder ${escapeHtml(game.title)}">Verwijder</button>
+          </div>
+        </div>
+        ${game.notes ? `<p class="game-notes">${escapeHtml(game.notes)}</p>` : ""}
+      </div>
+    </article>`;
   }).join("");
 
   const emptyState = document.getElementById("empty-state");
@@ -140,13 +149,15 @@ function showDetails(game) {
   detailsModal.hidden = false;
 }
 
-function readImage(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = () => reject(new Error("Afbeelding lezen is mislukt."));
-    reader.readAsDataURL(file);
-  });
+async function uploadImage(file) {
+  const data = new FormData();
+  data.append("cover_image", file);
+  const response = await fetch("upload-image.php", { method: "POST", body: data });
+  const result = await response.json();
+  if (!response.ok) {
+    throw new Error(result.error || "Afbeelding uploaden is mislukt.");
+  }
+  return result.path;
 }
 
 document.getElementById("add-game").addEventListener("click", () => openForm(null));
@@ -218,14 +229,14 @@ form.addEventListener("submit", async (event) => {
   }
 
   try {
-    if (image) game.image_data = await readImage(image);
+    if (image) game.image_data = await uploadImage(image);
     const updatedGames = editingGame
       ? games.map((item) => item.id === game.id ? game : item)
       : [...games, game];
     saveGames(updatedGames);
     closeForm();
-  } catch {
-    formError.textContent = "Opslaan is niet gelukt. Misschien is de browseropslag vol.";
+  } catch (error) {
+    formError.textContent = `Opslaan is niet gelukt: ${error.message}`;
     formError.hidden = false;
   }
 });

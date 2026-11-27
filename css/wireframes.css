@@ -1,0 +1,449 @@
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
+
+:root {
+  color-scheme: light;
+  --bg: #fff;
+  --fr: #fff;
+  --ink: #222;
+  --ln: #555;
+  --soft: #e6e6e3;
+  --mut: #777;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.3 "Patrick Hand", "Comic Relief", "Comic Sans MS", cursive;
+}
+
+h1 {
+  margin: 0 0 4px;
+  font-size: 28px;
+}
+
+h2 {
+  margin: 0 0 8px;
+  font-size: 23px;
+}
+
+h3 {
+  margin: 8px 0 6px;
+  border-left: 3px solid var(--ln);
+  padding-left: 8px;
+  font-size: 18px;
+}
+
+p {
+  margin-top: 0;
+}
+
+.grid {
+  display: grid;
+  max-width: 920px;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 560px), 1fr));
+  gap: 26px;
+}
+
+.tab {
+  display: inline-block;
+  border: 2px solid var(--ln);
+  border-bottom: 0;
+  border-radius: 6px 6px 0 0;
+  padding: 2px 14px;
+  background: var(--soft);
+  font-size: 19px;
+}
+
+.f {
+  display: flex;
+  min-height: 430px;
+  overflow: hidden;
+  flex-direction: column;
+  border: 2px solid var(--ln);
+  border-radius: 4px;
+  background: var(--fr);
+}
+
+.hd {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--ln);
+  padding: 8px 14px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: auto;
+  color: inherit;
+  font-size: 21px;
+  text-decoration: none;
+}
+
+.pad {
+  width: 30px;
+  height: 18px;
+  border: 2px solid var(--ln);
+  border-radius: 9px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  border: 2px solid transparent;
+  border-radius: 4px;
+  padding: 2px 7px;
+  color: inherit;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  background: var(--soft);
+}
+
+.nav a.on {
+  border-color: var(--ln);
+  background: var(--soft);
+  font-weight: 700;
+}
+
+.user {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--ln);
+  border-radius: 50%;
+}
+
+.bd {
+  flex: 1;
+  padding: 14px 16px;
+}
+
+.ft {
+  display: flex;
+  justify-content: space-between;
+  border-top: 2px solid var(--ln);
+  padding: 6px 14px;
+  font-size: 14px;
+}
+
+.ph {
+  min-height: 60px;
+  border: 2px solid var(--ln);
+  background:
+    linear-gradient(to top right, transparent calc(50% - 1px), var(--ln) 50%, transparent calc(50% + 1px)),
+    linear-gradient(to bottom right, transparent calc(50% - 1px), var(--ln) 50%, transparent calc(50% + 1px));
+}
+
+.ph-card {
+  border: 0;
+  border-bottom: 2px solid var(--ln);
+}
+
+.ph-30 { min-height: 30px; }
+.ph-32 { min-height: 32px; }
+.ph-34 { min-height: 34px; }
+.ph-40 { min-height: 40px; }
+.ph-44 { min-height: 44px; }
+.ph-56 { min-height: 56px; }
+.ph-130 { min-height: 130px; }
+.ph-170 { min-height: 170px; }
+.ph-190 { min-height: 190px; }
+
+.btn {
+  display: inline-block;
+  margin: 2px 4px 2px 0;
+  border: 2px solid var(--ln);
+  border-radius: 4px;
+  padding: 2px 12px;
+  background: var(--soft);
+  font-size: 15px;
+}
+
+.in {
+  height: 26px;
+  border: 2px solid var(--ln);
+  border-radius: 3px;
+  padding: 1px 8px;
+  background: var(--fr);
+  color: var(--mut);
+  font-size: 14px;
+}
+
+.in.t {
+  height: 70px;
+}
+
+.row {
+  display: grid;
+  align-items: center;
+  margin: 7px 0;
+  grid-template-columns: 130px 1fr;
+  gap: 8px;
+}
+
+.r2 {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.r2 > * {
+  min-width: 120px;
+  flex: 1;
+}
+
+.hero,
+.about-layout {
+  align-items: center;
+}
+
+.games-layout {
+  flex-wrap: nowrap;
+}
+
+.games-sidebar {
+  min-width: 110px;
+  flex: 0 0 130px;
+}
+
+.games-content,
+.detail-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.detail-cover {
+  flex: 1.2;
+}
+
+.cols {
+  display: grid;
+  gap: 14px;
+}
+
+.cols-three,
+.feature-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cols-four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.cols-five {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.feature-grid {
+  text-align: center;
+  font-size: 14px;
+}
+
+.feature-icon {
+  width: 34px;
+  min-height: 34px;
+  margin: 0 auto 4px;
+  border-radius: 50%;
+}
+
+.card {
+  border: 2px solid var(--ln);
+  border-radius: 3px;
+}
+
+.card .c {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+.sb {
+  color: var(--mut);
+  font-size: 14px;
+}
+
+.section-title-row,
+.sp {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.section-title-row h3 {
+  margin-right: auto;
+}
+
+.side div {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--soft);
+  padding: 4px 0;
+}
+
+.lock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  border: 2px dashed var(--ln);
+  padding: 6px 10px;
+  background: var(--soft);
+  font-size: 15px;
+}
+
+.hint {
+  margin-top: 6px;
+  color: var(--mut);
+  font-size: 13px;
+}
+
+.login-panel {
+  max-width: 320px;
+  margin: 10px auto;
+  border: 2px solid var(--ln);
+  border-radius: 4px;
+  padding: 16px;
+}
+
+.login-title,
+.login-intro,
+.login-submit,
+.login-register {
+  text-align: center;
+}
+
+.login-intro {
+  margin-bottom: 8px;
+}
+
+.login-password-label {
+  margin-top: 8px;
+}
+
+.login-options {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.forgot-password {
+  text-decoration: underline;
+}
+
+.login-submit {
+  display: block;
+}
+
+.login-register {
+  margin-top: 8px;
+}
+
+.wireframe-table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.wireframe-table th,
+.wireframe-table td {
+  border: 2px solid var(--ln);
+  padding: 4px 6px;
+  text-align: center;
+}
+
+.wireframe-table th {
+  background: var(--soft);
+}
+
+.wireframe-table td .ph {
+  width: 46px;
+  min-height: 34px;
+  margin: auto;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.float-end {
+  margin-left: auto;
+}
+
+.contact-form {
+  flex: 2;
+}
+
+.contact-details {
+  border-left: 2px solid var(--ln);
+  padding-left: 14px;
+}
+
+.contact-heading {
+  border: 0;
+  padding: 0;
+}
+
+.detail-layout {
+  align-items: center;
+  margin-top: 6px;
+}
+
+.detail-meta {
+  margin: 6px 0;
+}
+
+.detail-screenshots {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 680px) {
+  body {
+    padding: 12px;
+  }
+
+  .games-layout {
+    flex-wrap: wrap;
+  }
+
+  .games-sidebar {
+    flex-basis: 100%;
+  }
+
+  .cols-four,
+  .cols-five {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .wireframe-table {
+    font-size: 12px;
+  }
+}
